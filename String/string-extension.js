@@ -56,6 +56,32 @@ String.prototype.removeFromIndexTo = function ( index, range ) {
     return tmpArray.join( '' );
 };
 
+/**
+ * Repeat the string the amount of time specified
+ * on first paramter. by default if first argument not given,
+ * the value is 2
+ * @param {Number} repeatTime
+ * @return {String} string
+ */
+ String.prototype.repeat = function ( repeatTime ) {
+     var stringToRepeat, tmpString, numberOfTime;
+
+     tmpString = '';
+     stringToRepeat = this.toString();
+     numberOfTime = repeatTime ? repeatTime : 2;
+
+     if( arguments[0] && typeof( repeatTime ) !== 'number' ){
+         console.error('index parameter is not a number');
+         return stringToRepeat;
+     }
+
+     for (var i = 0; i < numberOfTime; i++) {
+         tmpString += stringToRepeat;
+     }
+     return tmpString;
+ };
+
+
 // Some test
 var string = 'Florian test';
 
@@ -72,3 +98,9 @@ string.removeCharAtIndex( [] );
 string.removeFromIndexTo( 0, 7 );
 string.removeFromIndexTo( 0, '1ioj' );
 string.removeFromIndexTo( 'eoqjoie', '1ioj' );
+
+'String to test'.repeat( 10 );
+'String to test'.repeat();
+'String to test'.repeat( 'test' );
+'String to test'.repeat( 3000 );
+
